@@ -1,4 +1,8 @@
 <?php
+
+  ini_set("display_errors", 'On');
+  error_reporting(E_ALL);
+
   session_start();
   if (!isset($_SESSION['title'])){
     $title_session = $_SESSION['title'];
@@ -25,7 +29,7 @@
     array_push($idarray, $arr['data'][$i]['seriesId']);
     array_push($autharray, $arr['data'][$i]['author']);
     array_push($pubarray, $arr['data'][$i]['publisher']);
-    array_push($volumearray, $arr['data'][$i]['volumes']);
+    #array_push($volumearray, $arr['data'][$i]['volumes']);
     array_push($descarray, $arr['data'][$i]['description']);
     array_push($imgarray, $arr['data'][$i]['seriesImage']);
     array_push($widtharray, $arr['data'][$i]['width']);

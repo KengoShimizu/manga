@@ -1,4 +1,8 @@
 <?php
+
+  ini_set("display_errors", 'On');
+  error_reporting(E_ALL);
+
   session_start();
   if(isset($_POST['page'])) { $page = $_POST['page']; }
 
@@ -47,16 +51,9 @@
     </div>
 
 <script>
-  var page = "<?php echo $page;?>";
-  console.log(page);
+  //var page = "<?php echo $page;?>";
+  //console.log(page);
 </script>
-
-
-    <?php
-    for($i = 0; $i < count($titlearray); $i++){
-      echo "<a href='./next.php'>$titlearray[$i]</a>";
-    }
-    ?>
 
     <div class="card border-white mb-3 mx-auto" style="max-width: 1000px;">
       <div class="row">
