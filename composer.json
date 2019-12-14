@@ -1,0 +1,12 @@
+{
+    "name": "kengo/manga",
+    "authors": [
+        {
+            "name": "Kengo Shimizu",
+            "email": "qwerty0308kengo@gmail.com"
+        }
+    ],
+    "require": {
+    	"ext-mbstring": "*"
+    }
+}
