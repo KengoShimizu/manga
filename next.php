@@ -9,6 +9,7 @@
   #httpリクエスト（$arrにjsonインプット）
   $url = "https://wfc2-image-api-259809.appspot.com/api/series/";
   if(isset($_GET['id'])) { $url .= $_GET['id']; }
+  
   $json = file_get_contents($url);
   $json = mb_convert_encoding($json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
   $arr = json_decode($json, true);
@@ -60,7 +61,6 @@
   </div>
 </div>
 
-<!-- 続きから読む -->
 <script>
   var titlearray = JSON.parse('<?php echo json_encode($bktiarray); ?>');
   var bookidarray = JSON.parse('<?php echo json_encode($bkidarray); ?>');

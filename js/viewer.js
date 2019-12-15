@@ -3,7 +3,6 @@ for(i = 0; i< 10; i++){
     $("<img>").attr("src", img[i]);
 }
 
-
 //ページ送り
 $('.right').on('click', function(){
 	if(count-2 >= 0){
@@ -30,6 +29,25 @@ $('.left').on('click', function(){
 			$($('img')[0]).attr("src", "../black.png");
 		}
 	}
+});
+
+//次の巻への遷移
+$('.btn-danger').on('click', function(){
+	$.post('../json.php', {id: bkid, prevod: id}).done(function( data ) {
+		console.log(data);
+	    if(data == id){
+	    	$('#myModalLabel').text("次の巻は存在しません。");
+	    	$('.modal-body').remove();
+	    	$('.btn-default').attr('disabled', 'disabled');
+	    	$('.btn-danger').attr('disabled', 'disabled');
+	    	setTimeout(function(){
+		        window.location.href = "../next.php?id="+bkid;
+		    },1000);
+	    }
+	    else{
+		    window.location.href = "../viewer.php?id="+data;
+		}
+	});
 });
 
 //戻るボタン押されたらlocalstrageにbookidとページ数を記録

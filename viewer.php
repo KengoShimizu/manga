@@ -42,6 +42,13 @@
             <div class="modal-header mx-auto">
                 <h4><div class="modal-title" id="myModalLabel">最後のページです</div></h4>
             </div>
+            <div class="modal-body">
+                <label>次の巻に進みますか？</label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                <button type="button" class="btn btn-danger">進む</button>
+            </div>
         </div>
     </div>
 </div>
@@ -65,12 +72,15 @@
 
   <!-- count = 初期ページ -->
   <!-- pagenum = 総ページ数 -->
-  <!-- title = 巻のタイトル -->
+  <!-- topimg = 漫画の代表画像 -->
+  <!-- id = 巻のid -->
+  <!-- id = シリーズのid -->
   <script>
     var count = <?php echo $counter;?>;
     var pagenum = <?php echo $pagenum;?>;
     var topimg = "<?php echo $imgdata[0]['imageUrl'];?>";
     var id = "<?php echo $bookid;?>";
+    var bkid = "<?php echo $sid;?>";
   </script>
 
 
