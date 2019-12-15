@@ -23,6 +23,7 @@
   $heightrarray = [];
   
   for($i = 0; $i < count($arr['data']); $i++){
+    $arr['data'][$i]['description'] = wordwrap($arr['data'][$i]['description'], 45, '<br>', true);
     array_push($titlearray, $arr['data'][$i]['title']);
     array_push($idarray, $arr['data'][$i]['seriesId']);
     array_push($autharray, $arr['data'][$i]['author']);
@@ -53,14 +54,14 @@
       for($i = 0; $i < count($titlearray); $i++){
         echo 
             "<div class='mb-3 ml-5'>".
-              "<div class='card' style='width: 18rem;'>".
-                "<a href='./next.php?id=$idarray[$i]'>".
+              "<div class='card' style='width: 18rem; height: 35rem;'>".
+                "<a href='./next.php?id=$idarray[$i]' id='card-a'>".
                   "<div class='img_wrap'>".
                     "<img src='$imgarray[$i]' class='card-img-top'>".
                   "</div>".
-                  "<p class='text-center mt-3'>$titlearray[$i]<p>".
                   "<div class='card-body'>".
-                    "<p class='card-text text-truncate'>$descarray[$i]</p>".
+                  "<p class='text-center mt-3'><strong>$titlearray[$i]</strong><p>".
+                    "<p class='card-text line-3'>$descarray[$i]</p>".
                   "</div>".
                 "</a>".
               "</div>".

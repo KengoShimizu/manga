@@ -10,9 +10,9 @@ else{
 	for(i=0; i<data.length; i++){
 		$('#rireki_container .row').append(
 			"<div class='mb-3 ml-5'>"+
-	        	"<div class='card' style='width: 18rem;'>"+
-	          		"<a href='./viewer.php?id="+data[i].id+"&page="+data[i].page+"'>"+
-		              	"<div class='img_wrap'>"+
+	        	"<div class='card' style='width: 18rem; height: 29rem;'>"+
+	          		"<a href='./viewer.php?id="+data[i].id+"&page="+data[i].page+"' id='card-a'>"+
+		              	"<div class='img_wrap' id='rireki_wrap'>"+
 		                	"<img src='"+data[i].img+"' class='card-img-top'>"+
 		              	"</div>"+
 		              	"<p class='text-center mt-3'>"+(data[i].page+1)+"ページから読む<p>"+

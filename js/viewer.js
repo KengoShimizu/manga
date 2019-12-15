@@ -25,7 +25,7 @@ $('.left').on('click', function(){
 			//最後のページまで行けば登録しない
 			$(this).attr('data-toggle', 'modal');
 		}
-		if(count == pagenum){
+		if(count == pagenum-1){
 			//奇数ページの時最後は黒い画像
 			$($('img')[0]).attr("src", "../black.png");
 		}

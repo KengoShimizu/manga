@@ -1,4 +1,3 @@
-
 a, a:visited, a:focus, a:hover {
     text-decoration: none;
 }
@@ -11,7 +10,21 @@ a:focus, a:hover {
     color: gray;
 }
 
+#card-a{
+  height: 100%;
+}
+
+p.line-3 {
+  height: 60%;
+  overflow: hidden;
+}
+
 .img_wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  height: 72%;
   border: 1px solid #ddd;
   margin: 0 auto;
   overflow: hidden;
@@ -19,8 +32,18 @@ a:focus, a:hover {
 }
 
 .img_wrap img {
+  vertical-align: middle;
   width: 100%;
   transition-duration: 0.5s;
+}
+
+.card-body{
+  width: 100%;
+  height: 28%;
+}
+
+#rireki_wrap{
+  height: 90%;
 }
 
 .card:hover a div img {
