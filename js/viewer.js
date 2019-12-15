@@ -35,7 +35,7 @@ $('.left').on('click', function(){
 $('.btn-danger').on('click', function(){
 	$.post('../json.php', {id: bkid, prevod: id}).done(function( data ) {
 		console.log(data);
-	    if(data == id){
+	    if(data == id || data.length == 0){
 	    	$('#myModalLabel').text("次の巻は存在しません。");
 	    	$('.modal-body').remove();
 	    	$('.btn-default').attr('disabled', 'disabled');
