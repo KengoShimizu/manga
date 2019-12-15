@@ -53,11 +53,15 @@
 
 <div class="relative resizeimage text-center">
   <!-- 画像の表示 -->
+  <div class="container_img">
+    <div class="elements">
   <?php
   $counter_next = $counter + 1;
   echo "<img src='$imgarray[$counter_next]'>";
   echo "<img src='$imgarray[$counter]'>";
   ?>
+</div>
+  </div>
 
   <!-- count = 初期ページ -->
   <!-- pagenum = 総ページ数 -->

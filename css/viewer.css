@@ -39,3 +39,16 @@ body{
 	width: 50vw;
   height: 100vh;
 }
+
+.container_img,
+.elements{
+  display:table-cell;
+  vertical-align:middle;
+}
+
+.container_img{
+  width: 100%;
+  height: 100%;
+  display:table;
+  text-align:center;
+}
