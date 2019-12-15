@@ -41,12 +41,12 @@
 
 <!-- ヘッダー -->
 <div class="card-header mb-3 text-center">
-  <h3 class="mt-3">無料漫画</h3>
+  <h3 class="mt-3 text-white">無料漫画</h3>
 </div>
 
 <div class="text-left p-3">トップ</div>
 
-<div class="bg-info text-left p-3 mb-5">作品一覧</div>
+<div class="bg-info text-left p-3 mb-5 text-white">作品一覧</div>
 
 <div class="container-row">
   <div class="row">
@@ -72,7 +72,7 @@
 </div>
 
 
-<div class="bg-info text-left p-3 mb-5" id="rireki">閲覧履歴</div>
+<div class="bg-info text-left p-3 mb-5 text-white" id="rireki">閲覧履歴</div>
 
 <div class="container-row" id="rireki_container">
   <div class="row">

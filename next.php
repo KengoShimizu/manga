@@ -38,7 +38,7 @@
 
 <!-- ヘッダー -->
 <div class="card-header mb-3 text-center">
-  <h3 class="mt-3">無料漫画</h3>
+  <h3 class="mt-3 text-white">無料漫画</h3>
 </div>
 
 <div class="text-left p-3"><a href="./">トップ</a> ＞ <?php echo $title;?></div>

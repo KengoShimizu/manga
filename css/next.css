@@ -11,6 +11,14 @@ a:focus, a:hover {
     color: gray;
 }
 
+.card-header{
+  background-color: #2f4f4f;
+}
+
+.bg-info{
+  background-color: #3cb371 !important;
+}
+
 
 .img_wrap{
   border: 1px solid #ddd;
