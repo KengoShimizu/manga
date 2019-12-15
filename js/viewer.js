@@ -34,7 +34,6 @@ $('.left').on('click', function(){
 //次の巻への遷移
 $('.btn-danger').on('click', function(){
 	$.post('../json.php', {id: bkid, prevod: id}).done(function( data ) {
-		console.log(data);
 	    if(data == id || data.length == 0){
 	    	$('#myModalLabel').text("次の巻は存在しません。");
 	    	$('.modal-body').remove();
@@ -54,7 +53,17 @@ $('.btn-danger').on('click', function(){
 $('button').on('click', function(){
 	
 	if(count == pagenum || count == pagenum-1){
-		//最後のページまで行けば登録しない
+		//最後のページまで記録から削除(あれば)
+		var data = localStorage.getItem('json');
+		data = JSON.parse(data);
+		// 同じ作品が登録されている場合は先頭にもってきてページ数だけ更新
+		data = data.filter(function(item, index){
+  			if (item.id != id) return true;
+		});
+		if(data.length > 10){ 
+			data.pop(); 
+		}
+		localStorage.setItem('json', JSON.stringify(data));
 	}
 	//登録されていなければ
 	else if(!localStorage.getItem('json')){
