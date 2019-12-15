@@ -1,0 +1,30 @@
+
+a, a:visited, a:focus, a:hover {
+    text-decoration: none;
+}
+
+a {
+	color: black;
+}
+
+a:focus, a:hover {
+    color: gray;
+}
+
+
+.img_wrap{
+  border: 1px solid #ddd;
+  margin: 0 auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.img_wrap img {
+  width: 100%;
+  transition-duration: 0.5s;
+}
+
+.card:hover a div img {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}

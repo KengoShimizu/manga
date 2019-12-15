@@ -1,10 +1,10 @@
 <?php
-
+  #エラーダンパー
   ini_set("display_errors", 'On');
   error_reporting(E_ALL);
 
-  session_start();
-  if(isset($_POST['page'])) { $page = $_POST['page']; }
+  require "./common/head.php";
+  require "./common/footer.php";
 
   #httpリクエスト（$arrにjsonインプット）
   $url = "https://wfc2-image-api-259809.appspot.com/api/series/";
@@ -31,74 +31,65 @@
   #echo '<pre>';
   #var_dump($arr);
   #echo '</pre>';
+
+  head(["next.css"]);
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>無料漫画</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- ヘッダー -->
+<div class="card-header mb-3 text-center">
+  <h3 class="mt-3">無料漫画</h3>
+</div>
 
-  </head>
+<div class="text-left p-3"><a href="./">トップ</a> ＞ <?php echo $title;?></div>
 
-  <body>
-    <!-- ヘッダー -->
-    <div class="card-header mb-4">
-      無料漫画
+<!-- 漫画紹介トップ -->
+<div class="card border-white mb-3 mx-auto" id="manga_top" style="max-width: 1000px;">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="<?php echo $img; ?>" class="card-img">
     </div>
-
-<script>
-  //var page = "<?php echo $page;?>";
-  //console.log(page);
-</script>
-
-    <div class="card border-white mb-3 mx-auto" style="max-width: 1000px;">
-      <div class="row">
-        <div class="col-md-4">
-          <img src="<?php echo $img; ?>" class="card-img">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h3 class="card-title mb-3"><?php echo $title; ?></h3>
-            <p class="text-muted">著者　<span style="color:black"><?php echo $author; ?></span></p>
-            <p class="text-muted">出版社　<span style="color:black"><?php echo $publisher; ?></span></p>
-            <p class="card-text text-muted">概要<br><span style="color:black"><?php echo $description; ?></span></p>
-            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-          </div>
-        </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title mb-3"><?php echo $title; ?></h3>
+        <p class="text-muted">著者　<span style="color:black"><?php echo $author; ?></span></p>
+        <p class="text-muted">出版社　<span style="color:black"><?php echo $publisher; ?></span></p>
+        <p class="card-text text-muted">概要<br><span style="color:black"><?php echo $description; ?></span></p>
+        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
       </div>
     </div>
-
-    <div class="container">
-      <div class="row">
-<?php
-  for($i = 0; $i < count($bkidarray); $i++){
-    $kan = $i + 1;
-    echo 
-    "<div class='card border-white mr-3 mb-3' style='width: 18rem;'>".
-      "<a href='./viewer.php?id=$bkidarray[$i]'>".
-        "<img src='$bkimarray[$i]' class='card-img-top'>".
-        "<div class='card-body text-center'>".
-          "<h5 class='card-title'>第 $kan 巻</h5>".
-        "</div>".
-      "</a>".
-    "</div>";
-  }
-?>
+  </div>
 </div>
-    </div>
 
-    <!-- フッター -->
-    <div class="card-footer text-muted mt-3">
-      フッター
-    </div>
+<!-- 続きから読む -->
+<script>
+  var titlearray = JSON.parse('<?php echo json_encode($bktiarray); ?>');
+  var bookidarray = JSON.parse('<?php echo json_encode($bkidarray); ?>');
+  var imgarray = JSON.parse('<?php echo json_encode($bkimarray); ?>');
+</script>
 
-    <script src="./js/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="./js/index.js"></script>
-  </body>
-</html>
+
+<!-- 漫画一覧 -->
+<div class="container">
+  <div class="row row-cols-5 justify-content-center">
+    <?php
+      for($i = 0; $i < count($bkidarray); $i++){
+        $kan = $i + 1;
+        echo 
+        "<div class='card border-white mr-3 mb-3' style='width: 18rem;'>".
+          "<a href='./viewer.php?id=$bkidarray[$i]'>".
+            "<div class='img_wrap'>".
+              "<img src='$bkimarray[$i]' class='card-img-top'>".
+            "</div>".
+            "<div class='card-body text-center'>".
+              "<h5 class='card-title'>第 $kan 巻</h5>".
+            "</div>".
+          "</a>".
+        "</div>";
+      }
+    ?>
+  </div>
+</div>
+
+<?php
+footer(["next.js"]);
+?>

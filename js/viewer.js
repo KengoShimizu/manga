@@ -20,12 +20,38 @@ $('.left').on('click', function(){
 		$($('img')[0]).attr("src", img[count+1]);
 		$($('img')[1]).attr("src", img[count]);
 		loadpages(count);
+		if(count+2 == pagenum){
+			console.log("aa");
+		}
 	}
 });
 
-//戻るボタン押されたらAjaxでページ数返却
+//戻るボタン押されたらlocalstrageにbookidとページ数を記録
 $('button').on('click', function(){
-	$.post('./next.php?id='+bookid, 'page='+count);
+	
+	if(count == pagenum){
+		//最後のページまで行けば登録しない
+	}
+	//登録されていなければ
+	else if(!localStorage.getItem('json')){
+		var data = [{img: topimg, page: count, id: id}];
+		localStorage.setItem('json', JSON.stringify(data));
+	}
+	else{
+		var data = localStorage.getItem('json');
+		data = JSON.parse(data);
+		// 同じ作品が登録されている場合は先頭にもってきてページ数だけ更新
+		data = data.filter(function(item, index){
+  			if (item.id != id) return true;
+		});
+		data.unshift({img: topimg, page: count, id: id});
+		if(data.length > 10){ 
+			data.pop(); 
+		}
+		localStorage.setItem('json', JSON.stringify(data));
+	}
+	
+	
 });
 
 //ページ先読み関数

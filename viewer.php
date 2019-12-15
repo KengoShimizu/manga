@@ -3,11 +3,19 @@
   ini_set("display_errors", 'On');
   error_reporting(E_ALL);
 
-  session_start();
+  require "./common/head.php";
+  require "./common/footer.php";
 
   #httpリクエスト（$arrにjsonインプット）
   $url = "https://wfc2-image-api-259809.appspot.com/api/books/";
-  if(isset($_GET['id'])) { $url .= $_GET['id']; }
+
+  if(isset($_GET['id'])) { 
+    $url .= $_GET['id'];
+    $bookid = $_GET['id'];
+  }
+  if(isset($_GET['page'])) { $counter = $_GET['page']; }
+  else{ $counter = 0; }
+
   $json = file_get_contents($url);
   $json = mb_convert_encoding($json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
   $arr = json_decode($json, true);
@@ -25,57 +33,53 @@
     array_push($imgarray, $imgdata[$i]['imageUrl']);
   } 
 
-  if (!isset($_SESSION['title']) || $_SESSION['title'] != $title) {
-    // 登録されていなければ、設定
-    $_SESSION['title'] = $title;
-  }
-
+  head(["viewer.css"]);
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>無料漫画</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/viewer.css">
+<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header mx-auto">
+                <h4><div class="modal-title" id="myModalLabel">最後のページです</div></h4>
+            </div>
+        </div>
+    </div>
+</div>
 
-  </head>
-
-  <script>
-    var img = JSON.parse('<?php echo json_encode($imgarray); ?>');
-  </script>
-
-  <body>
-    <div class="relative resizeimage text-center">
-<?php
-      $counter = 0;
-      $counter_next = $counter + 1;
-      echo "<img src='$imgarray[$counter_next]'>";
-      echo "<img src='$imgarray[$counter]'>";
-?>
-
+<!-- 画像配列をjsに渡す -->
 <script>
-  var count = <?php echo $counter;?>;
-  var pagenum = <?php echo $pagenum;?>;
-  var bookid =" <?php echo $sid;?>";
+  var img = JSON.parse('<?php echo json_encode($imgarray); ?>');
 </script>
 
-      <div class="absolute">
+<div class="relative resizeimage text-center">
+  <!-- 画像の表示 -->
+  <?php
+  $counter_next = $counter + 1;
+  echo "<img src='$imgarray[$counter_next]'>";
+  echo "<img src='$imgarray[$counter]'>";
+  ?>
 
-        <button type="button" class="btn btn-light" onclick="location.href='../next.php?id=<?php echo $sid;?>'"><</button>
-        <div class="left"></div>
-        <div class="right"></div>
-      </div>
-    </div>
+  <!-- count = 初期ページ -->
+  <!-- pagenum = 総ページ数 -->
+  <!-- title = 巻のタイトル -->
+  <script>
+    var count = <?php echo $counter;?>;
+    var pagenum = <?php echo $pagenum;?>;
+    var topimg = "<?php echo $imgdata[0]['imageUrl'];?>";
+    var id = "<?php echo $bookid;?>";
+  </script>
+
+
+  <!-- 戻るボタン、ページ送りブロックの配置 -->
+  <div class="absolute">
+
+    <button type="button" class="btn btn-light" onclick="location.href='../next.php?id=<?php echo $sid;?>'"><</button>
+    <div data-toggle="" data-target="#testModal" class="left"></div>
+    <div class="right"></div>
+  </div>
+</div>
     
 
-
-    <script src="./js/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="./js/viewer.js"></script>
-  </body>
-</html>
+<?php
+footer(["viewer.js"]);
+?>

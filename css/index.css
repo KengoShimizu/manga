@@ -27,3 +27,13 @@ a:focus, a:hover {
   transform: scale(1.1);
   transition-duration: 0.5s;
 }
+
+.container-row {
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.row {
+  display: flex;
+}
