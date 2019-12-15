@@ -11,6 +11,7 @@ $('.right').on('click', function(){
 		$($('img')[0]).attr("src", img[count+1]);
 		$($('img')[1]).attr("src", img[count]);
 		loadpages(count);
+		$('.left').attr('data-toggle', 'a');
 	}
 });
 
@@ -20,8 +21,13 @@ $('.left').on('click', function(){
 		$($('img')[0]).attr("src", img[count+1]);
 		$($('img')[1]).attr("src", img[count]);
 		loadpages(count);
-		if(count+2 == pagenum){
-			console.log("aa");
+		if(count == pagenum || count == pagenum-1){
+			//最後のページまで行けば登録しない
+			$(this).attr('data-toggle', 'modal');
+		}
+		if(count == pagenum){
+			//奇数ページの時最後は黒い画像
+			$($('img')[0]).attr("src", "../black.png");
 		}
 	}
 });
@@ -29,7 +35,7 @@ $('.left').on('click', function(){
 //戻るボタン押されたらlocalstrageにbookidとページ数を記録
 $('button').on('click', function(){
 	
-	if(count == pagenum){
+	if(count == pagenum || count == pagenum-1){
 		//最後のページまで行けば登録しない
 	}
 	//登録されていなければ

@@ -31,9 +31,13 @@ a:focus, a:hover {
 .container-row {
   white-space: nowrap;
   overflow-x: auto;
+  overflow-y:hidden; 
+  width:100%;
   -webkit-overflow-scrolling: touch;
 }
 
 .row {
-  display: flex;
+  overflow-x:auto; 
+  overflow-y:hidden; 
 }
+

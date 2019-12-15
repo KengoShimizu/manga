@@ -2,8 +2,8 @@ body{
   background-color: #000;
 }
 
-.resizeimage img { 
-  max-width: 100vw;
+.resizeimage img {
+  max-width: 43vw;
   max-height: 100vh;
 }
 
