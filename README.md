@@ -5,8 +5,11 @@ apiはインターンシップ専用に用意されたものなので，将来�
 php, jQuery, localstrage, bootstrap
 ## 外観
 <img src="https://github.com/KengoShimizu/manga/wiki/images/head.gif" width="50%">
+
 ## 工夫ポイントその①　履歴機能
 <img src="https://github.com/KengoShimizu/manga/wiki/images/kuhuu1.gif" width="50%">
+
 ## 工夫ポイントその②　次の巻への遷移
 <img src="https://github.com/KengoShimizu/manga/wiki/images/kuhuu2.gif" width="50%">
+
 ## 工夫ポイントその③　ページの先読み機能
